@@ -19,7 +19,7 @@ namespace projcapgemini
             {
                 var nomeProduto = i > 4 ? $"Teste {i}" : "Teste 1";
 
-                var arquivo = new Arquivo(i, DateTime.Now.AddDays(i), nomeProduto, 4+i, i);
+                var arquivo = new Arquivo(i, DateTime.Now, DateTime.Now.AddDays(i), nomeProduto, 4+i, i);
                 
                 arquivos.Add(arquivo); 
 
@@ -49,6 +49,7 @@ namespace projcapgemini
                     var arquivo = new Arquivo
                     (
                         linha,
+                        DateTime.Now,
                         (DateTime)rd["Data Entrega"],
                         rd["Nome do Produto"].ToString(),
                         Convert.ToInt32(rd["Quantidade"]),

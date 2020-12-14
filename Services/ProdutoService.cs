@@ -42,7 +42,7 @@ namespace projcapgemini
                 return obj;
             }
             obj.statusCode = 200;
-            obj.returnObject = new Arquivo(id, DateTime.Now.AddDays(1), "Teste", 4, 1);
+            obj.returnObject = new Arquivo(id, DateTime.Now, DateTime.Now.AddDays(1), "Teste", 4, 1);
             return obj;
         }
 

@@ -60,6 +60,8 @@ namespace projcapgemini
                     if (arquivo.HasError)
                     {
                         obj.statusCode = 400;
+                        obj.returnObject = listaDeArquivos;
+                        return obj;
                     }
                     linha++;
                 }
@@ -67,7 +69,7 @@ namespace projcapgemini
                 if (listaDeArquivos.Count() > 0)
                 {
                     obj.returnObject = listaDeArquivos;
-                    return listaDeArquivos;
+                    return obj;
                 }
                 else
                 {

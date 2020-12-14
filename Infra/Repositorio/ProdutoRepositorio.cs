@@ -81,14 +81,12 @@ namespace projcapgemini
             }
             catch
             {
-                //Console.WriteLine("Não foi possivel ler a planilha do excel.");
                 return null;
             }
             finally
             {
                 connect.Close();
             }
-            //return new List<Arquivo>();
         }
         public string GravarArquivo(IFormFile file)
         {

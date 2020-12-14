@@ -38,7 +38,6 @@ namespace projcapgemini
             {
                 obj.statusCode = 404;
                 obj.returnObject = null;
-                // this.HttpContext.Response.StatusCode = 404;
                 return obj;
             }
             obj.statusCode = 200;
@@ -52,7 +51,6 @@ namespace projcapgemini
             var path = produtoRepositorio.GravarArquivo(file);
             var obj = produtoRepositorio.ObterDadosExcel(path);
 
-            // this.HttpContext.Response.StatusCode = 201;
             return obj;
         }
 

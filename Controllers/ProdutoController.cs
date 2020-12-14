@@ -37,20 +37,6 @@ namespace WebApi.Controllers
             return dados.returnObject;
         }
 
-        // POST api/values
-        [HttpPost, Route("v1/list")]
-        public ActionResult<IEnumerable<object>> Post([FromBody] string value)
-        {
-            var obj = new List<object>();
-
-            obj.Add(new {
-                prop1 = "aaa",
-                prop2 = "bbb"
-            });
-
-            return obj;
-        }
-
         [HttpPost, Route("v1/insert")]
         public IEnumerable<Arquivo> Insert()
         {

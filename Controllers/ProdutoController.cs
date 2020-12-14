@@ -51,7 +51,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost, Route("v1/insert")]
-        public IEnumerable<Arquivo> Insert()
+        public IEnumerable<Arquivo> Insert([FromBody] string value)
         {
             var produtoService = new ProdutoService();
             dynamic dados = produtoService.Insert();

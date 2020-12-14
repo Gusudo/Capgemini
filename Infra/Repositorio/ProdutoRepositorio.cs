@@ -45,10 +45,11 @@ namespace projcapgemini
 
                 while (rd.Read())
                 {
+                    var teste = (DateTime)rd["Data Entrega"];
                     var arquivo = new Arquivo
                     (
                         linha,
-                        Convert.ToDateTime(rd["Data Entrega"]),
+                        (DateTime)rd["Data Entrega"],
                         rd["Nome do Produto"].ToString(),
                         Convert.ToInt32(rd["Quantidade"]),
                         float.Parse(rd["Valor Unitário"].ToString())

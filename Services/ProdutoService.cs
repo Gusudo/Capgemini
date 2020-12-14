@@ -16,10 +16,10 @@ namespace projcapgemini
 
             return arquivos.GroupBy(p => p.NomeProduto).Select(x => new ArquivoConsolidadoViewModel
             {
-                MenorDataEntrega = x.Min(d => d.DataEntrega),
+                MenorDataEntrega = (DateTime)x.Min(d => d.DataEntrega),
                 NomeProduto = x.First().NomeProduto,
-                QuantidadeTotal = x.Sum(q => q.Quantidade),
-                ValorTotal = x.Sum(v => v.ValorUnitario)
+                QuantidadeTotal = (int)x.Sum(q => q.Quantidade),
+                ValorTotal = (float)x.Sum(v => v.ValorUnitario)
             }).ToList();
         }
 

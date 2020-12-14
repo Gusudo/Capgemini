@@ -10,21 +10,13 @@ namespace projcapgemini
     {
         public IEnumerable<ArquivoConsolidadoViewModel> GetImportacoesConsolidado()
         {
-            var arquivos = new List<Arquivo>();
+            var produtoRepositorio = new ProdutoRepositorio();
+            var arquivos = produtoRepositorio.GetImportacoesFake(20);
 
-            for (int i = 1; i < 10; i++)
-            {
-                var nomeProduto = i > 4 ? $"Teste {i}" : "Teste 1";
-
-                var arquivo = new Arquivo(i, DateTime.Now.AddDays(i), nomeProduto, 4+i, i);
-                
-                arquivos.Add(arquivo); 
-
-            }
             return arquivos.GroupBy(p => p.NomeProduto).Select(x => new ArquivoConsolidadoViewModel
             {
                 MenorDataEntrega = x.Min(d => d.DataEntrega),
-                Nome = x.First().NomeProduto,
+                NomeProduto = x.First().NomeProduto,
                 QuantidadeTotal = x.Sum(q => q.Quantidade),
                 ValorTotal = x.Sum(v => v.ValorUnitario)
             }).ToList();
@@ -32,17 +24,9 @@ namespace projcapgemini
 
         public IEnumerable<Arquivo> GetImportacoes()
         {
-           var arquivos = new List<Arquivo>();
+            var produtoRepositorio = new ProdutoRepositorio();
+            var arquivos = produtoRepositorio.GetImportacoesFake(20);
 
-            for (int i = 1; i < 10; i++)
-            {
-                var nomeProduto = i > 4 ? $"Teste {i}" : "Teste 1";
-
-                var arquivo = new Arquivo(i, DateTime.Now.AddDays(i), nomeProduto, 4+i, i);
-                
-                arquivos.Add(arquivo); 
-
-            }
             return arquivos;
         }
 

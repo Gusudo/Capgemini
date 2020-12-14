@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace projcapgemini
@@ -45,31 +46,12 @@ namespace projcapgemini
             return obj;
         }
 
-        public dynamic Insert()
+        public dynamic Insert(IFormFile file)
         {
-            var arquivos = new List<Arquivo>();
+            var produtoRepositorio = new ProdutoRepositorio();
+            var path = produtoRepositorio.GravarArquivo(file);
+            var obj = produtoRepositorio.ObterDadosExcel(path);
 
-            dynamic obj = new ExpandoObject();
-
-            for (int i = 1; i < 10; i++)
-            {
-                Random rnd = new Random();
-                int value = rnd.Next(0, 3);
-
-                var arquivo = new Arquivo(i, DateTime.Now.AddDays(value), "Teste", 4+i, value);
-                
-                arquivos.Add(arquivo);
-                if (arquivo.HasError)
-                {
-                    obj.statusCode = 400;
-                    obj.returnObject = arquivos;
-                    // this.HttpContext.Response.StatusCode = 400;
-                    return obj;
-                }
-                
-            }
-            obj.statusCode = 201;
-            obj.returnObject = arquivos;
             // this.HttpContext.Response.StatusCode = 201;
             return obj;
         }

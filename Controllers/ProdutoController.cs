@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using projcapgemini;
 
@@ -51,13 +52,21 @@ namespace WebApi.Controllers
         }
 
         [HttpPost, Route("v1/insert")]
-        public IEnumerable<Arquivo> Insert([FromBody] string value)
+        public IEnumerable<Arquivo> Insert()
         {
-            var produtoService = new ProdutoService();
-            dynamic dados = produtoService.Insert();
-            this.HttpContext.Response.StatusCode = dados.statusCode;
+            if (Request.Form.Files.Count > 0)
+            {
+                IFormFile file = Request.Form.Files[0];
+                var produtoService = new ProdutoService();
+                dynamic dados = produtoService.Insert(file);
+                this.HttpContext.Response.StatusCode = dados.statusCode;
 
-            return dados.returnObject;
+                return dados.returnObject;
+            }
+
+            this.HttpContext.Response.StatusCode = 400;
+            return null;
+
         }
     }
 }
